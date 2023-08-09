@@ -1,1 +1,1 @@
-gcc -Wall -Wextra -g3 main.c sql.c -o main.exe
+gcc -Wall -Wextra -g3 main.c StoringFunction.c -o main.exe
