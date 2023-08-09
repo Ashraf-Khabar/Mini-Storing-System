@@ -30,38 +30,57 @@ int main()
     {
         printMainMenu();
         scanf("%d", &menu);
-        getchar(); // Clear newline character from input buffer
+        getchar();
 
         switch (menu)
         {
         case 1:
-            // Implement the 'Create Account' functionality
-            break;
+            if (username == NULL || password == NULL)
+            {
+                printf("Memory allocation failed.\n");
+                return 1;
+            }
+            printf("Enter the username: ");
+            fgets(username, MAX_USERNAME_LENGTH, stdin);
+            username[strcspn(username, "\n")] = '\0'; // Remove newline
 
+            printf("Enter the password: ");
+            fgets(password, MAX_PASSWORD_LENGTH, stdin);
+            password[strcspn(password, "\n")] = '\0'; // Remove newline
+
+            printf("\n");
+
+            if (createAcount(username, password))
+            {
+                check = 1;
+            }
+            else
+            {
+                check = 0;
+            }
+            break;
         case 2:
-            // Implement the 'Connect' functionality
             break;
 
         case 3:
-            // Implement the 'Reload' functionality
             break;
 
         case 4:
             printf("Are you sure you want to quit the app? (y/n): ");
             char confirmation;
-            scanf(" %c", &confirmation); // Leave a space before %c to consume newline
+            scanf(" %c", &confirmation);
+            getchar();
 
             if (confirmation == 'y' || confirmation == 'Y')
             {
                 printf("Goodbye!\n");
-                menu = 4; // Exit the loop and quit the app
+                menu = 4;
             }
             else
             {
+                menu = 0;
                 printf("Continuing...\n");
             }
-            break;
-
         default:
             printf("Invalid option. Please select a valid option.\n");
         }
