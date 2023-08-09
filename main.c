@@ -35,38 +35,33 @@ int main()
         switch (menu)
         {
         case 1:
-            if (username == NULL || password == NULL)
-            {
-                printf("Memory allocation failed.\n");
-                return 1;
-            }
-            printf("Enter the username: ");
-            fgets(username, MAX_USERNAME_LENGTH, stdin);
-            username[strcspn(username, "\n")] = '\0';
-
-            printf("Enter the password: ");
-            fgets(password, MAX_PASSWORD_LENGTH, stdin);
-            password[strcspn(password, "\n")] = '\0';
-
-            printf("\n");
-
-            if (createAcount(username, password))
-            {
-                check = 1;
-            }
-            else
-            {
-                check = 0;
-            }
+            // Implement the 'Create Account' functionality
             break;
 
         case 2:
+            // Implement the 'Connect' functionality
             break;
+
         case 3:
+            // Implement the 'Reload' functionality
             break;
+
         case 4:
-            printf("Goodbye!\n");
+            printf("Are you sure you want to quit the app? (y/n): ");
+            char confirmation;
+            scanf(" %c", &confirmation); // Leave a space before %c to consume newline
+
+            if (confirmation == 'y' || confirmation == 'Y')
+            {
+                printf("Goodbye!\n");
+                menu = 4; // Exit the loop and quit the app
+            }
+            else
+            {
+                printf("Continuing...\n");
+            }
             break;
+
         default:
             printf("Invalid option. Please select a valid option.\n");
         }
