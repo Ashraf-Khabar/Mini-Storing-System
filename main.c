@@ -5,6 +5,19 @@
 #define MAX_USERNAME_LENGTH 100
 #define MAX_PASSWORD_LENGTH 100
 
+void printMainMenu()
+{
+    printf("********************************\n");
+    printf("*        Account System        *\n");
+    printf("********************************\n");
+    printf("1. Create Account\n");
+    printf("2. Connect\n");
+    printf("3. Reload\n");
+    printf("4. Quit\n");
+    printf("********************************\n");
+    printf("Select an option: ");
+}
+
 int main()
 {
     int check = 0, menu = 0;
@@ -13,24 +26,30 @@ int main()
 
     printAsciiArt();
 
-    while (check != 0 || menu != 4)
+    while (menu != 4)
     {
-        printf("keys : 1 => create acount / 2 => connect / 3 => Reload / => Quit\n");
-        printf("Options : 1 - 2 - 3 - 4 : ");
+        printMainMenu();
         scanf("%d", &menu);
+        getchar(); // Clear newline character from input buffer
 
-        if (menu == 1)
+        switch (menu)
         {
+        case 1:
             if (username == NULL || password == NULL)
             {
                 printf("Memory allocation failed.\n");
                 return 1;
             }
             printf("Enter the username: ");
-            gets(username);
+            fgets(username, MAX_USERNAME_LENGTH, stdin);
+            username[strcspn(username, "\n")] = '\0';
+
             printf("Enter the password: ");
-            gets(password);
+            fgets(password, MAX_PASSWORD_LENGTH, stdin);
+            password[strcspn(password, "\n")] = '\0';
+
             printf("\n");
+
             if (createAcount(username, password))
             {
                 check = 1;
@@ -40,13 +59,23 @@ int main()
                 check = 0;
             }
             break;
+
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            printf("Goodbye!\n");
+            break;
+        default:
+            printf("Invalid option. Please select a valid option.\n");
         }
-        else
-        {
-            check = 0;
-        }
+
+        printf("\n");
     }
 
     free(username);
     free(password);
+
+    return 0;
 }
