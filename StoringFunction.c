@@ -4,22 +4,18 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
+#include <time.h>
 
-void printAsciiArt() {
-    printf("  .--.--.       ___                                                                                                 ___                       ____          \n");
-    printf(" /  /    '.   ,--.'|_                      ,--,                                                                   ,--.'|_                   ,'  , `.        \n");
-    printf("|  :  /`. /   |  | :,'   ,---.    __  ,-.,--.'|         ,---,                                                     |  | :,'               ,-+-,.' _ |        \n");
-    printf(";  |  |--`    :  : ' :  '   ,'\\ ,' ,'/ /||  |,      ,-+-. /  |  ,----._,.          .--.--.              .--.--.   :  : ' :            ,-+-. ;   , ||        \n");
-    printf("|  :  ;_    .;__,'  /  /   /   |'  | |' |`--'_     ,--.'|'   | /   /  ' /         /  /    '       .--, /  /    '.;__,'  /     ,---.  ,--.'|'   |  ||        \n");
-    printf(" \\  \\    `. |  |   |  .   ; ,. :|  |   ,',' ,'|   |   |  ,\"' ||   :     |        |  :  /`./     /_ ./||  :  /`./|  |   |     /     \\|   |  ,', |  |,        \n");
-    printf("  `----.   \\:__,'| :  '   | |: :'  :  /  '  | |   |   | /  | ||   | .\\  .        |  :  ;_    , ' , ' :|  :  ;_  :__,'| :    /    /  |   | /  | |--'         \n");
-    printf("  __ \\  \\  |  '  : |__'   | .; :|  | '   |  | :   |   | |  | |.   ;  ';  |         \\  \\    `./___/ \\: | \\  \\    `. '  : |__ .    ' / |   : |  | ,            \n");
-    printf(" /  /`--'  /  |  | '.'|   :    |;  : |   '  : |__ |   | |--'   `---`-'| |          `----.   \\.  \\  ' |  `----.   \\|  | '.'|'   ;   /|   : |  |/             \n");
-    printf("'--'.     /   ;  :    ;\\   \\  / |  , ;   |  | '.'||   | |  |/ '   .   . |         /  /`--'  / \\  ;   : /  /`--'  /;  :    ;'   |  / |   | |`-'              \n");
-    printf("  `--'---'    |  ,   /  `----'   ---'    ;  :    ;|   |/       .'__/'\\_: |        '--'.     /   \\  \\  ;'--'.     / |  ,   / |   :    |   ;/                  \n");
-    printf("               ---`-'                    |  ,   / '---'        |   :    :          `--'---'     :  \\  \\ `--'---'   ---`-'   \\   \\  /'---'                   \n");
-    printf("                                          ---`-'                \\   \\  /                         \\  ' ;                      `----'                         \n");
-    printf("                                                                 `--`-'                           `--'                                                       \n");
+void printAsciiArt()
+{
+    printf("  ______                 _                                                    \n");
+    printf(" / _____) _             (_)                                 _                 \n");
+    printf("( (____ _| |_ ___   ____ _ ____   ____     ___ _   _  ___ _| |_ _____ ____    \n");
+    printf(" \\____ (_   _) _ \\ / ___) |  _ \\ / _  |   /___) | | |/___|_   _) ___ |    \\   \n");
+    printf(" _____) )| || |_| | |   | | | | ( (_| |  |___ | |_| |___ | | |_| ____| | | |  \n");
+    printf("(______/  \\__)___/|_|   |_|_| |_|\\___ |  (___/ \\__  (___/   \\__)_____)_|_|_|  \n");
+    printf("                                (_____|       (____/                           \n");
+
     printf("CREATED BY : ACHRAF KHABAR                                DATE : 09/08/2023\n");
     printf("\n");
 }
@@ -79,6 +75,10 @@ int isUsernameUnique(const char *username)
 
 int createAcount(char *username, char *password)
 {
+
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+
     if (strlen(password) < 8)
     {
         printf("The password must have more than 8 characters\n");
@@ -105,7 +105,7 @@ int createAcount(char *username, char *password)
             return 0;
         }
 
-        fprintf(file, "%s,%s\n", username, password);
+        fprintf(file, "%s,%s,%d-%02d-%02d,%02d:%02d:%02d\n", username, password,tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
         fclose(file);
         printf("The account was created successfully\n");
         return 1;
