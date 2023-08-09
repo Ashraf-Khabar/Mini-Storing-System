@@ -57,7 +57,6 @@ int isUsernameUnique(const char *username)
     {
         return 1;
     }
-
     char line[100];
     while (fgets(line, sizeof(line), file))
     {
@@ -68,7 +67,6 @@ int isUsernameUnique(const char *username)
             return 0;
         }
     }
-
     fclose(file);
     return 1;
 }
@@ -107,7 +105,7 @@ int createAcount(char *username, char *password)
         fprintf(file, "%s,%s,%d-%02d-%02d,%02d:%02d:%02d\n", username, password, tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
         fclose(file);
         printf("The account was created successfully\n");
-        printf("\n"); // Start a new line
+        printf("\n");
         return 1;
     }
 }
