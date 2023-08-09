@@ -11,6 +11,8 @@ int main()
     char *username = (char *)malloc(MAX_USERNAME_LENGTH * sizeof(char));
     char *password = (char *)malloc(MAX_PASSWORD_LENGTH * sizeof(char));
 
+    printAsciiArt();
+    
     while (!check)
     {
         if (username == NULL || password == NULL)

@@ -5,6 +5,25 @@
 #include <ctype.h>
 #include <stdbool.h>
 
+void printAsciiArt() {
+    printf("  .--.--.       ___                                                                                                 ___                       ____          \n");
+    printf(" /  /    '.   ,--.'|_                      ,--,                                                                   ,--.'|_                   ,'  , `.        \n");
+    printf("|  :  /`. /   |  | :,'   ,---.    __  ,-.,--.'|         ,---,                                                     |  | :,'               ,-+-,.' _ |        \n");
+    printf(";  |  |--`    :  : ' :  '   ,'\\ ,' ,'/ /||  |,      ,-+-. /  |  ,----._,.          .--.--.              .--.--.   :  : ' :            ,-+-. ;   , ||        \n");
+    printf("|  :  ;_    .;__,'  /  /   /   |'  | |' |`--'_     ,--.'|'   | /   /  ' /         /  /    '       .--, /  /    '.;__,'  /     ,---.  ,--.'|'   |  ||        \n");
+    printf(" \\  \\    `. |  |   |  .   ; ,. :|  |   ,',' ,'|   |   |  ,\"' ||   :     |        |  :  /`./     /_ ./||  :  /`./|  |   |     /     \\|   |  ,', |  |,        \n");
+    printf("  `----.   \\:__,'| :  '   | |: :'  :  /  '  | |   |   | /  | ||   | .\\  .        |  :  ;_    , ' , ' :|  :  ;_  :__,'| :    /    /  |   | /  | |--'         \n");
+    printf("  __ \\  \\  |  '  : |__'   | .; :|  | '   |  | :   |   | |  | |.   ;  ';  |         \\  \\    `./___/ \\: | \\  \\    `. '  : |__ .    ' / |   : |  | ,            \n");
+    printf(" /  /`--'  /  |  | '.'|   :    |;  : |   '  : |__ |   | |--'   `---`-'| |          `----.   \\.  \\  ' |  `----.   \\|  | '.'|'   ;   /|   : |  |/             \n");
+    printf("'--'.     /   ;  :    ;\\   \\  / |  , ;   |  | '.'||   | |  |/ '   .   . |         /  /`--'  / \\  ;   : /  /`--'  /;  :    ;'   |  / |   | |`-'              \n");
+    printf("  `--'---'    |  ,   /  `----'   ---'    ;  :    ;|   |/       .'__/'\\_: |        '--'.     /   \\  \\  ;'--'.     / |  ,   / |   :    |   ;/                  \n");
+    printf("               ---`-'                    |  ,   / '---'        |   :    :          `--'---'     :  \\  \\ `--'---'   ---`-'   \\   \\  /'---'                   \n");
+    printf("                                          ---`-'                \\   \\  /                         \\  ' ;                      `----'                         \n");
+    printf("                                                                 `--`-'                           `--'                                                       \n");
+    printf("CREATED BY : ACHRAF KHABAR                                DATE : 09/08/2023\n");
+    printf("\n");
+}
+
 int isValidPassword(const char *password)
 {
     int hasUppercase = 0;
@@ -40,22 +59,22 @@ int isUsernameUnique(const char *username)
     FILE *file = fopen("./data/acounts.csv", "r");
     if (file == NULL)
     {
-        return 1; // Assume unique if the file doesn't exist yet
+        return 1;
     }
 
-    char line[100]; // Adjust the buffer size as needed
+    char line[100];
     while (fgets(line, sizeof(line), file))
     {
         char *existingUsername = strtok(line, ",");
         if (existingUsername != NULL && strcmp(existingUsername, username) == 0)
         {
             fclose(file);
-            return 0; // Username already exists
+            return 0;
         }
     }
 
     fclose(file);
-    return 1; // Username is unique
+    return 1;
 }
 
 int createAcount(char *username, char *password)

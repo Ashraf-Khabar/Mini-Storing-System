@@ -4,5 +4,6 @@
 int isValidPassword(const char *password);
 int createAcount(char *username, char *password);
 int isUsernameUnique(const char *username);
+void printAsciiArt();
 
 #endif
