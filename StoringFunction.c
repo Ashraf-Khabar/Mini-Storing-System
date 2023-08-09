@@ -101,7 +101,6 @@ int createAcount(char *username, char *password)
             printf("Error opening file\n");
             return 0;
         }
-
         fprintf(file, "%s,%s,%d-%02d-%02d,%02d:%02d:%02d\n", username, password, tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
         fclose(file);
         printf("The account was created successfully\n");

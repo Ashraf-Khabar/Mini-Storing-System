@@ -61,16 +61,13 @@ int main()
             break;
         case 2:
             break;
-
         case 3:
             break;
-
         case 4:
             printf("Are you sure you want to quit the app? (y/n): ");
             char confirmation;
             scanf(" %c", &confirmation);
             getchar();
-
             if (confirmation == 'y' || confirmation == 'Y')
             {
                 printf("Goodbye!\n");
@@ -84,12 +81,9 @@ int main()
         default:
             printf("Invalid option. Please select a valid option.\n");
         }
-
         printf("\n");
     }
-
     free(username);
     free(password);
-
     return 0;
 }
